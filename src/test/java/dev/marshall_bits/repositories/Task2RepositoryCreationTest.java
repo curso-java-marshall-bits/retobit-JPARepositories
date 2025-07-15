@@ -4,11 +4,9 @@ import dev.marshall_bits.repositories.models.User;
 import org.junit.jupiter.api.*;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.jpa.repository.JpaRepository;
-
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -17,7 +15,7 @@ public class Task2RepositoryCreationTest {
 
     @Test
     @Order(1)
-    @DisplayName("UserRepository: Verificar que existe y extiende JpaRepository<User, Long>")
+    @DisplayName("UserRepository existe y extiende JpaRepository")
     void testUserRepositoryExists() {
         try {
             Class<?> userRepoClass = Class.forName("dev.marshall_bits.repositories.repositories.UserRepository");
@@ -33,13 +31,13 @@ public class Task2RepositoryCreationTest {
             System.out.println("✅ UserRepository: CORRECTO");
 
         } catch (ClassNotFoundException e) {
-            fail("❌ UserRepository no encontrado. Crear interfaz UserRepository en el paquete repositories.");
+            fail("❌ UserRepository no encontrado. Crea una interfaz UserRepository en el paquete repositories.");
         }
     }
 
     @Test
     @Order(2)
-    @DisplayName("PostRepository: Verificar que existe y extiende JpaRepository<Post, Long>")
+    @DisplayName("PostRepository existe y extiende JpaRepository")
     void testPostRepositoryExists() {
         try {
             Class<?> postRepoClass = Class.forName("dev.marshall_bits.repositories.repositories.PostRepository");
@@ -55,14 +53,14 @@ public class Task2RepositoryCreationTest {
             System.out.println("✅ PostRepository: CORRECTO");
 
         } catch (ClassNotFoundException e) {
-            fail("❌ PostRepository no encontrado. Crear interfaz PostRepository en el paquete repositories.");
+            fail("❌ PostRepository no encontrado. Crea una interfaz PostRepository en el paquete repositories.");
         }
     }
 
 
     @Test
     @Order(4)
-    @DisplayName("Estructura: Verificar que todos los repositories están en el paquete correcto")
+    @DisplayName("Estructura: los repositories están en el paquete 'repositories'")
     void testRepositoriesPackageStructure() {
         try {
             Class.forName("dev.marshall_bits.repositories.repositories.UserRepository");
@@ -71,13 +69,13 @@ public class Task2RepositoryCreationTest {
             System.out.println("✅ Todos los repositories encontrados en la estructura de paquetes correcta");
 
         } catch (ClassNotFoundException e) {
-            fail("❌ Uno o más repositories faltan. Asegurar que los tres repositories están creados en el paquete 'repositories'.");
+            fail("❌ Uno o más repositories faltan. Asegúrate que los tres repositories están creados en el paquete 'repositories'.");
         }
     }
 
     @Test
     @Order(5)
-    @DisplayName("Verificar que los repositories heredan métodos básicos de JpaRepository")
+    @DisplayName("Los repositories están implementados correctamente")
     void testRepositoriesHaveBasicCrudMethods() {
         try {
             Class<?> userRepoClass = Class.forName("dev.marshall_bits.repositories.repositories.UserRepository");

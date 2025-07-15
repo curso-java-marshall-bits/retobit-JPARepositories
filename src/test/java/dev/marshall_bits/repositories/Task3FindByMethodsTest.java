@@ -46,7 +46,7 @@ public class Task3FindByMethodsTest {
 
     @Test
     @Order(1)
-    @DisplayName("UserRepository: Verificar que existe método para buscar por nombre de usuario")
+    @DisplayName("UserRepository: existe un método para buscar por userName")
     void testFindByUsernameMethodExists() {
         try {
             Method findByUsernameMethod = UserRepository.class.getMethod("findByUsername", String.class);
@@ -68,7 +68,7 @@ public class Task3FindByMethodsTest {
 
     @Test
     @Order(2)
-    @DisplayName("UserRepository: Verificar que existe método para buscar por email")
+    @DisplayName("UserRepository: Existe un método para buscar por email")
     void testFindByEmailMethodExists() {
         try {
             Method findByEmailMethod = UserRepository.class.getMethod("findByEmail", String.class);
@@ -90,7 +90,7 @@ public class Task3FindByMethodsTest {
 
     @Test
     @Order(3)
-    @DisplayName("PostRepository: Verificar que existe método para buscar por título")
+    @DisplayName("PostRepository: Existe un método para buscar por título")
     void testFindByTitleMethodExists() {
         try {
             Method findByTitleMethod = PostRepository.class.getMethod("findByTitle", String.class);
@@ -112,7 +112,7 @@ public class Task3FindByMethodsTest {
 
     @Test
     @Order(4)
-    @DisplayName("PostRepository: Verificar que existe método para buscar por categoría")
+    @DisplayName("PostRepository: Existe un método para buscar por categoría")
     void testFindByCategoryMethodExists() {
         try {
             Method findByCategoryMethod = PostRepository.class.getMethod("findByCategory", PostCategory.class);
@@ -133,7 +133,7 @@ public class Task3FindByMethodsTest {
 
     @Test
     @Order(5)
-    @DisplayName("UserRepository: Probar funcionalidad de búsqueda por nombre de usuario")
+    @DisplayName("UserRepository: Buscar por userName funciona correctamente")
     void testFindByUsernameFunctionality() {
         try {
             Method findByUsernameMethod = UserRepository.class.getMethod("findByUsername", String.class);
@@ -171,7 +171,7 @@ public class Task3FindByMethodsTest {
 
     @Test
     @Order(6)
-    @DisplayName("UserRepository: Probar funcionalidad de búsqueda por email")
+    @DisplayName("UserRepository: Buscar por email funciona correctamente")
     void testFindByEmailFunctionality() {
         try {
             Method findByEmailMethod = UserRepository.class.getMethod("findByEmail", String.class);
@@ -209,7 +209,7 @@ public class Task3FindByMethodsTest {
 
     @Test
     @Order(7)
-    @DisplayName("PostRepository: Probar funcionalidad de búsqueda por título")
+    @DisplayName("PostRepository: Buscar por título funciona correctamente")
     void testFindByTitleFunctionality() {
         try {
             Method findByTitleMethod = PostRepository.class.getMethod("findByTitle", String.class);
@@ -247,10 +247,9 @@ public class Task3FindByMethodsTest {
 
     @Test
     @Order(8)
-    @DisplayName("PostRepository: Probar funcionalidad de búsqueda por categoría")
+    @DisplayName("PostRepository: Buscar por categoría funciona correctamente")
     void testFindByCategoryFunctionality() {
         try {
-            // Crear posts con diferentes categorías
             Post techPost = new Post("Spring Boot Guide", "Advanced Spring Boot", testUser, PostCategory.TECHNOLOGY);
             postRepository.save(techPost);
 
@@ -260,13 +259,11 @@ public class Task3FindByMethodsTest {
             Post anotherTechPost = new Post("Microservices", "Microservices architecture", testUser, PostCategory.TECHNOLOGY);
             postRepository.save(anotherTechPost);
 
-            // Crear post sin categoría
             Post postWithoutCategory = new Post("Random Post", "Random content", testUser);
             postRepository.save(postWithoutCategory);
 
             Method findByCategoryMethod = PostRepository.class.getMethod("findByCategory", PostCategory.class);
 
-            // Buscar posts de categoría TECHNOLOGY
             Object result = findByCategoryMethod.invoke(postRepository, PostCategory.TECHNOLOGY);
 
             assertTrue(result instanceof List, "findByCategory debe retornar una List");
@@ -280,14 +277,12 @@ public class Task3FindByMethodsTest {
             assertTrue(foundSpringPost, "Debe encontrar el post 'Spring Boot Guide'");
             assertTrue(foundMicroservicesPost, "Debe encontrar el post 'Microservices'");
 
-            // Buscar posts de categoría TUTORIAL
             Object resultTutorial = findByCategoryMethod.invoke(postRepository, PostCategory.TUTORIAL);
             List<Post> tutorialPosts = (List<Post>) resultTutorial;
 
             assertEquals(1, tutorialPosts.size(), "Debe encontrar exactamente 1 post con categoría TUTORIAL");
             assertEquals("Java Basics", tutorialPosts.get(0).getTitle(), "Debe encontrar el post 'Java Basics'");
 
-            // Buscar posts de categoría que no existe en la BD
             Object resultEmpty = findByCategoryMethod.invoke(postRepository, PostCategory.NEWS);
             List<Post> emptyPosts = (List<Post>) resultEmpty;
             assertTrue(emptyPosts.isEmpty(), "Debe retornar lista vacía para categoría sin posts");

@@ -63,7 +63,7 @@ public class Task4JPQLQueriesTest {
 
     @Test
     @Order(1)
-    @DisplayName("PostRepository: Verificar que existe método para obtener posts con más de 100 vistas")
+    @DisplayName("PostRepository: Existe un método para obtener posts con más de 100 vistas")
     void testFindPostsWithMoreThan100ViewsMethodExists() {
         try {
             Method method = PostRepository.class.getMethod("findPostsWithMoreThan100Views");
@@ -82,7 +82,7 @@ public class Task4JPQLQueriesTest {
 
     @Test
     @Order(2)
-    @DisplayName("PostRepository: Probar funcionalidad de obtener posts con más de 100 vistas")
+    @DisplayName("PostRepository: Buscar posts con más de 100 vistas funciona correctamente")
     void testFindPostsWithMoreThan100ViewsFunctionality() {
         try {
             Method method = PostRepository.class.getMethod("findPostsWithMoreThan100Views");
@@ -112,7 +112,7 @@ public class Task4JPQLQueriesTest {
 
     @Test
     @Order(3)
-    @DisplayName("PostRepository: Verificar que existe método para obtener todos los posts ordenados por fecha de creación descendente")
+    @DisplayName("PostRepository: Existe un método para obtener todos los posts ordenados por fecha de creación descendente")
     void testFindAllOrderByCreatedDateDescMethodExists() {
         try {
             Method method = PostRepository.class.getMethod("findAllByCreatedAt");
@@ -131,7 +131,7 @@ public class Task4JPQLQueriesTest {
 
     @Test
     @Order(4)
-    @DisplayName("PostRepository: Probar funcionalidad de obtener todos los posts ordenados por fecha de creación descendente")
+    @DisplayName("PostRepository: Posts por fecha de creación ordenados descendente funciona correctamente")
     void testFindAllOrderByCreatedDateDescFunctionality() {
         try {
             Thread.sleep(10);
@@ -147,7 +147,6 @@ public class Task4JPQLQueriesTest {
 
             assertEquals(5, posts.size(), "Debe encontrar todos los 5 posts creados en setUp + 1 adicional");
 
-            // Verificar que están ordenados por fecha descendente (más reciente primero)
             for (int i = 0; i < posts.size() - 1; i++) {
                 assertTrue(
                     posts.get(i).getCreatedAt().isAfter(posts.get(i + 1).getCreatedAt()) ||
@@ -156,7 +155,6 @@ public class Task4JPQLQueriesTest {
                 );
             }
 
-            // El primer post debe ser el más reciente
             assertEquals("Latest Tutorial", posts.get(0).getTitle(),
                         "El primer post debe ser el más reciente");
 
@@ -169,7 +167,7 @@ public class Task4JPQLQueriesTest {
 
     @Test
     @Order(5)
-    @DisplayName("PostRepository: Verificar que existe método para buscar posts por palabra clave en el título")
+    @DisplayName("PostRepository: Existe un método para buscar posts por palabra clave en el título")
     void testFindByTitleContainingMethodExists() {
         try {
             Method method = PostRepository.class.getMethod("findByTitleContaining", String.class);
@@ -188,12 +186,11 @@ public class Task4JPQLQueriesTest {
 
     @Test
     @Order(6)
-    @DisplayName("PostRepository: Probar funcionalidad de buscar posts por palabra clave en el título")
+    @DisplayName("PostRepository: Buscar posts por palabra clave en el título funciona correctamente")
     void testFindByTitleContainingFunctionality() {
         try {
             Method method = PostRepository.class.getMethod("findByTitleContaining", String.class);
 
-            // Buscar posts que contengan "Java"
             Object result = method.invoke(postRepository, "Java");
             assertTrue(result instanceof List, "Debe retornar una List");
             List<Post> postsJava = (List<Post>) result;
@@ -202,7 +199,6 @@ public class Task4JPQLQueriesTest {
             assertEquals("Java Fundamentals", postsJava.get(0).getTitle(),
                         "Debe encontrar 'Java Fundamentals'");
 
-            // Buscar posts que contengan "Spring"
             result = method.invoke(postRepository, "Spring");
             List<Post> postsSpring = (List<Post>) result;
 
@@ -210,7 +206,6 @@ public class Task4JPQLQueriesTest {
             assertEquals("Advanced Spring Boot", postsSpring.get(0).getTitle(),
                         "Debe encontrar 'Advanced Spring Boot'");
 
-            // Buscar posts que contengan "Architecture"
             result = method.invoke(postRepository, "Architecture");
             List<Post> postsArchitecture = (List<Post>) result;
 
@@ -218,7 +213,6 @@ public class Task4JPQLQueriesTest {
             assertEquals("Microservices Architecture", postsArchitecture.get(0).getTitle(),
                         "Debe encontrar 'Microservices Architecture'");
 
-            // Buscar con palabra que no existe
             result = method.invoke(postRepository, "Python");
             List<Post> postsPython = (List<Post>) result;
 
@@ -230,6 +224,4 @@ public class Task4JPQLQueriesTest {
             fail("❌ Error al probar findByTitleContaining: " + e.getMessage());
         }
     }
-
-
 }
