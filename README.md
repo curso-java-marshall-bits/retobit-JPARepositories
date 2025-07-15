@@ -1,4 +1,4 @@
-# RetoBit: Repositorios 👷‍♀️
+# RetoBit: Repositorios JPA 👷‍♀️
 
 En este RetoBit vamos a practicar el uso de JPA y JPQL para crear repositorios que nos permitan interactuar con una base de datos. Tu Tech Lead te ha puesto a cargo de los repositorios de la aplicación. 
 
