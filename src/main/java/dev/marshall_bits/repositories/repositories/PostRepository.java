@@ -1,0 +1,7 @@
+package dev.marshall_bits.repositories.repositories;
+
+import dev.marshall_bits.repositories.models.Post;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface PostRepository extends JpaRepository<Post, Long> {
+}
