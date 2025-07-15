@@ -64,7 +64,6 @@ Dentro del package `repositories` crea los siguientes repositorios:
 
 - `UserRepository`: para gestionar los usuarios.
 - `PostRepository`: para gestionar las publicaciones.
-- `CategoryRepository`: para gestionar las categorías de cada publicación.
 
 ## Tarea 3: Implementa métodos de consulta findBy
 
