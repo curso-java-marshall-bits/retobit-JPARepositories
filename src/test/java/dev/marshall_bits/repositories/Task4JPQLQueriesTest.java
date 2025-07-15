@@ -1,5 +1,4 @@
 package dev.marshall_bits.repositories;
-
 import dev.marshall_bits.repositories.models.Post;
 import dev.marshall_bits.repositories.models.PostCategory;
 import dev.marshall_bits.repositories.models.User;
@@ -69,8 +68,7 @@ public class Task4JPQLQueriesTest {
             Method method = PostRepository.class.getMethod("findPostsWithMoreThan100Views");
 
             assertNotNull(method, "El método para obtener posts con más de 100 vistas debe existir en PostRepository");
-            assertTrue(method.getReturnType().equals(List.class),
-                      "El método debe retornar List<Post>");
+            assertEquals(List.class, method.getReturnType(), "El método debe retornar List<Post>");
 
             System.out.println("✅ Método para obtener posts con más de 100 vistas encontrado");
 
@@ -88,7 +86,7 @@ public class Task4JPQLQueriesTest {
             Method method = PostRepository.class.getMethod("findPostsWithMoreThan100Views");
             Object result = method.invoke(postRepository);
 
-            assertTrue(result instanceof List, "Debe retornar una List");
+            assertInstanceOf(List.class, result, "Debe retornar una List");
             List<Post> posts = (List<Post>) result;
 
             assertEquals(2, posts.size(), "Debe encontrar exactamente 2 posts con más de 100 vistas");
@@ -118,8 +116,7 @@ public class Task4JPQLQueriesTest {
             Method method = PostRepository.class.getMethod("findAllByCreatedAt");
 
             assertNotNull(method, "El método para obtener posts ordenados por fecha debe existir en PostRepository");
-            assertTrue(method.getReturnType().equals(List.class),
-                      "El método debe retornar List<Post>");
+            assertEquals(List.class, method.getReturnType(), "El método debe retornar List<Post>");
 
             System.out.println("✅ Método para obtener posts ordenados por fecha encontrado");
 
@@ -142,7 +139,7 @@ public class Task4JPQLQueriesTest {
             Method method = PostRepository.class.getMethod("findAllByCreatedAt");
             Object result = method.invoke(postRepository);
 
-            assertTrue(result instanceof List, "Debe retornar una List");
+            assertInstanceOf(List.class, result, "Debe retornar una List");
             List<Post> posts = (List<Post>) result;
 
             assertEquals(5, posts.size(), "Debe encontrar todos los 5 posts creados en setUp + 1 adicional");
@@ -173,8 +170,7 @@ public class Task4JPQLQueriesTest {
             Method method = PostRepository.class.getMethod("findByTitleContaining", String.class);
 
             assertNotNull(method, "El método para buscar posts por título debe existir en PostRepository");
-            assertTrue(method.getReturnType().equals(List.class),
-                      "El método debe retornar List<Post>");
+            assertEquals(List.class, method.getReturnType(), "El método debe retornar List<Post>");
 
             System.out.println("✅ Método para buscar posts por título encontrado");
 
@@ -192,7 +188,7 @@ public class Task4JPQLQueriesTest {
             Method method = PostRepository.class.getMethod("findByTitleContaining", String.class);
 
             Object result = method.invoke(postRepository, "Java");
-            assertTrue(result instanceof List, "Debe retornar una List");
+            assertInstanceOf(List.class, result, "Debe retornar una List");
             List<Post> postsJava = (List<Post>) result;
 
             assertEquals(1, postsJava.size(), "Debe encontrar exactamente 1 post que contenga 'Java'");
@@ -210,7 +206,7 @@ public class Task4JPQLQueriesTest {
             List<Post> postsArchitecture = (List<Post>) result;
 
             assertEquals(1, postsArchitecture.size(), "Debe encontrar exactamente 1 post que contenga 'Architecture'");
-            assertEquals("Microservices Architecture", postsArchitecture.get(0).getTitle(),
+            assertEquals("Microservices Architecture", postsArchitecture.getFirst().getTitle(),
                         "Debe encontrar 'Microservices Architecture'");
 
             result = method.invoke(postRepository, "Python");

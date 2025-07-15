@@ -1,5 +1,4 @@
 package dev.marshall_bits.repositories;
-
 import dev.marshall_bits.repositories.models.Post;
 import dev.marshall_bits.repositories.models.PostCategory;
 import dev.marshall_bits.repositories.models.User;
@@ -10,11 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.lang.reflect.Method;
 import java.util.Optional;
 import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -120,8 +117,7 @@ public class Task3FindByMethodsTest {
             assertNotNull(findByCategoryMethod, "El método para buscar por categoría debe existir en PostRepository");
 
             assertEquals("findByCategory", findByCategoryMethod.getName());
-            assertTrue(findByCategoryMethod.getReturnType().equals(List.class),
-                      "El método debe retornar List<Post>");
+            assertEquals(List.class, findByCategoryMethod.getReturnType(), "El método debe retornar List<Post>");
 
             System.out.println("✅ Método para buscar por categoría encontrado");
 
@@ -266,7 +262,7 @@ public class Task3FindByMethodsTest {
 
             Object result = findByCategoryMethod.invoke(postRepository, PostCategory.TECHNOLOGY);
 
-            assertTrue(result instanceof List, "findByCategory debe retornar una List");
+            assertInstanceOf(List.class, result, "findByCategory debe retornar una List");
             List<Post> techPosts = (List<Post>) result;
 
             assertEquals(2, techPosts.size(), "Debe encontrar exactamente 2 posts con categoría TECHNOLOGY");
