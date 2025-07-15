@@ -1,7 +1,6 @@
 # RetoBit: Repositorios 👷‍♀️
 
-En este RetoBit vamos a practicar el uso de JPA y JPQL para crear repositorios que nos permitan interactuar con una base
-de datos. Tu Tech Lead te ha puesto a cargo de los repositorios de la aplicación. 
+En este RetoBit vamos a practicar el uso de JPA y JPQL para crear repositorios que nos permitan interactuar con una base de datos. Tu Tech Lead te ha puesto a cargo de los repositorios de la aplicación. 
 
 No hay que preocuparse por la base de datos, ya que está todo planeado para generar una base de datos ficticia en memoria y no hace falta que la configures. 
 
@@ -9,7 +8,7 @@ No hay que preocuparse por la base de datos, ya que está todo planeado para gen
 
 - Creación de repositorios JPA
 - Métodos de consulta derivados de `JpaRepository`
-- JPQL para consultas más complejas
+- JPQL (Java Persistence Query Language)
 - TDD (Test Driven Development)
 
 ## Fork del repositorio:
@@ -47,7 +46,7 @@ git clone https://aqui.debes.pegar.la.url
 
 **Nota: Después del 'git clone' debes pegar la url del repositorio. No pongas la que he puesto yo en el ejemplo 🤣*
 
-Ahora se va a crear un nuevo directorio con el nombre del retobit.
+Ahora se va a crear un nuevo directorio con el nombre del retoBit.
 
 ### 3. ¡Ya puedes abrir este reto en IntelliJ!
 
