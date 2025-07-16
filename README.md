@@ -52,6 +52,28 @@ Ahora se va a crear un nuevo directorio con el nombre del retoBit.
 
 # Instrucciones
 
+Tenemos una app que está ya creada y configurada. Tu tarea es crear los repositorios necesarios para gestionar los usuarios y las publicaciones de la aplicación.
+
+Tu manager te ha dado un ejemplo de cómo se ve la tabla en la base de datos real:
+
+### Usuarios
+| id | username              | email                           | password | created_at | is_active |
+|----|-----------------------|---------------------------------|----------|------------|-----------|
+| 1 | capitan_tortilla      | capitan.tortilla@superheros.dev | $2a$10$... | 2024-01-15 10:30:00 | true |
+| 2 | gazpacho_vengador | gazpacho@avengers.com           | $2a$10$... | 2024-01-16 14:20:00 | true |
+| 3 | super_churro          | churro.magico@gmail.com         | $2a$10$... | 2024-01-17 09:15:00 | false |
+| 4 | flamenquina_atomica   | flamenquis@atomiquis.net        | $2a$10$... | 2024-01-18 16:45:00 | true |
+
+### Posts
+| id | title                                 | content                                               | created_at | updated_at | view_count | author_id | category |
+|----|---------------------------------------|-------------------------------------------------------|------------|------------|------------|-----------|----------|
+| 1 | Cómo hacer tortillas voladoras        | El Capitán Tortilla revela sus secretos culinarios... | 2024-01-20 09:00:00 | 2024-01-20 09:00:00 | 150 | 1 | TECHNOLOGY |
+| 2 | Receta del gazpacho de la justicia    | Una sopa fría que derrotará a tus enemigos...         | 2024-01-21 12:30:00 | 2024-01-21 15:20:00 | 75 | 2 | LIFESTYLE |
+| 3 | El poder oculto de los churros        | Descubre cómo los churros pueden salvar el mundo...   | 2024-01-22 14:15:00 | 2024-01-23 10:30:00 | 220 | 3 | TECHNOLOGY |
+| 4 | Flamenquines rellenos de queso vegano | La batalla que nunca habías imaginado                 | 2024-01-23 08:45:00 | 2024-01-23 08:45:00 | 45 | 4 | TRAVEL |
+
+Como la base de datos de este repo es ficticia, no es necesario que la configures. La aplicación ya está preparada para generar una base de datos en memoria utilizando H2 y JPA.
+
 ## Tarea 1: Crea un package
 
 Genera el Package `repositories` dentro de `src/main/java/dev.marshall_bits.repositories`.
@@ -169,4 +191,4 @@ Mucha suerte con el reto. Te mando un abrazo y ¡Sigamos desarrollando! 🫂
 
 *Nota: Estos retos pertenecen al curso de Marcel Bosch de Java para desarrolladores junior. Cualquier uso fuera de este
 contexto debe estar autorizado explícitamente. Si quieres usar estos ejercicios ponte en contacto conmigo a través de
-mis redes sociales (visita mi página para [más información](http://marshall-bits.dev)).* 
+mis redes sociales (visita mi página para [más información](http://marshall-bits.dev)).*
