@@ -206,7 +206,7 @@ public class Task4JPQLQueriesTest {
             List<Post> postsArchitecture = (List<Post>) result;
 
             assertEquals(1, postsArchitecture.size(), "Debe encontrar exactamente 1 post que contenga 'Architecture'");
-            assertEquals("Microservices Architecture", postsArchitecture.getFirst().getTitle(),
+            assertEquals("Microservices Architecture", postsArchitecture.get(0).getTitle(), // se modifica metodo getFirst() dado que List no tiene este metodo (se encontraba dando erro al ejecutar los tests)
                         "Debe encontrar 'Microservices Architecture'");
 
             result = method.invoke(postRepository, "Python");
